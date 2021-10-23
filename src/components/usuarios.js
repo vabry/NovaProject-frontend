@@ -16,7 +16,7 @@ export default class userList extends Component {
     }
 
     async getUser() {
-        const res = await axios.get("http://localhost:4000/api/usuarios")
+        const res = await axios.get("https://novaproject.herokuapp.com/api/usuarios")
         this.setState({ users: res.data })
     }
 
