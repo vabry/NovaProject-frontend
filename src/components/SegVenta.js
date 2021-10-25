@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
 import { Link } from 'react-router-dom';
 
-
-export default class ventaList extends Component {
-
+export default class SegVenta extends Component {
+    
     state = {
-        ventas: []
-    }
-
+        query: '',
+        ventas: [],
+        busqueda: []
+    }  
     componentDidMount() {
         this.getVenta();
     }
@@ -27,11 +26,41 @@ export default class ventaList extends Component {
         }
         else { }
     }
-
+    reload = () => { 
+        this.props.history.push(this.props.match.url)
+        window.location.reload(true);
+    }
+    handleInputChange = () => {
+        this.setState({
+            query: this.search.value
+        })
+        this.filterArray();
+    }
+    filterArray = () => {
+        var searchString = this.state.query;
+        var responseVentas = this.state.ventas
+        if(searchString.length > 0){
+            responseVentas = 
+            responseVentas.filter(L => {
+                console.log()
+                return L.prodVenta.toLowerCase().match(searchString)||
+                L.cliente.toLowerCase().match(searchString)||
+                L.vendedor.toLowerCase().match(searchString);
+            })
+            this.setState({ventas:responseVentas})
+            
+        }
+    }
     render() {
         return (
 
             <div className="container container-sm">
+                <br/>
+        <div className="barraBusqueda"/>
+            <input type="text" id= "filter" placeholder="Buscar" ref= {input => this.search = input} onChange= {this.handleInputChange} className="textField"/>
+            <button onClick= {this.reload} type="button">Nueva busqueda</button>
+        <div/>
+        <br /><br />
                 <table className="table  ">
                     <thead>
                         <tr className="table-primary">
@@ -90,11 +119,7 @@ export default class ventaList extends Component {
                         <p>Nueva venta</p>
                     </Link>
                 </div>
-
             </div>
-
         )
     }
-
-
 }
