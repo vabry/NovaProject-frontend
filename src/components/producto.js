@@ -15,14 +15,14 @@ export default class prodList extends Component {
     }
 
     async getProd() {
-        const res = await axios.get("http://localhost:4000/api/productos")
+        const res = await axios.get("https://novaproject.herokuapp.com/api/productos")
         this.setState({ prods: res.data })
     }
 
     prodDelete = async (prodid) => {
 
         if (window.confirm("¿Esta seguro de eliminar el producto?")) {
-            await axios.delete("http://localhost:4000/api/productos/" + prodid);
+            await axios.delete("https://novaproject.herokuapp.com/api/productos/" + prodid);
             this.getProd();
         }
         else { }

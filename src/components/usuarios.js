@@ -25,7 +25,7 @@ export default class userList extends Component {
     deleteUser = async (userid) => {
 
         if (window.confirm("¿Esta seguro de eliminar el usuario?")) {
-            await axios.delete("http://localhost:4000/api/usuarios/" + userid);
+            await axios.delete("https://novaproject.herokuapp.com/api/usuarios/" + userid);
             this.getUser();
         }
         else { }

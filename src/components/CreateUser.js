@@ -18,7 +18,7 @@ export default class CreateUser extends Component {
     async componentDidMount() {
 
         if (this.props.match.params.id) {
-            const res = await axios.get("http://localhost:4000/api/usuarios/" + this.props.match.params.id);
+            const res = await axios.get("https://novaproject.herokuapp.com/api/usuarios/" + this.props.match.params.id);
             this.setState(
                 {
                     Nombre: res.data.Nombre,
@@ -41,7 +41,7 @@ export default class CreateUser extends Component {
                 Cargo: this.state.rolSelect,
                 Estado: this.state.estSelect,
             };
-            await axios.put("http://localhost:4000/api/usuarios/" + this.state._id, updateUser);
+            await axios.put("https://novaproject.herokuapp.com/api/usuarios/" + this.state._id, updateUser);
         }
 
         else {
@@ -51,7 +51,7 @@ export default class CreateUser extends Component {
                 Cargo: this.state.rolSelect,
                 Estado: this.state.estSelect,
             };
-            await axios.post("http://localhost:4000/api/usuarios", newUser);
+            await axios.post("https://novaproject.herokuapp.com/api/usuarios", newUser);
         }
         window.location.href = '/usuario';
     }

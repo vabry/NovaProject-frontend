@@ -24,7 +24,7 @@ export default class CreateVenta extends Component {
     }
 
     async componentDidMount() {
-        const res = await axios.get('http://localhost:4000/api/productos');
+        const res = await axios.get('https://novaproject.herokuapp.com/api/productos');
         if (res.data.length > 0) {
             this.setState({
                 prods: res.data.map(prod => prod.Producto),
@@ -33,7 +33,7 @@ export default class CreateVenta extends Component {
         }
         if (this.props.match.params.id) {
             console.log(this.props.match.params.id)
-            const res = await axios.get('http://localhost:4000/api/ventas/' + this.props.match.params.id);
+            const res = await axios.get('https://novaproject.herokuapp.com/api/ventas/' + this.props.match.params.id);
             console.log(res.data)
             this.setState({
                 fechaVenta:new Date(res.data.fechaVenta),
@@ -64,7 +64,7 @@ export default class CreateVenta extends Component {
                 documento:this.state.documento,
                 vendedor:this.state.vendedor
             };
-            await axios.put('http://localhost:4000/api/ventas/' + this.state._id, updateVenta);
+            await axios.put('https://novaproject.herokuapp.com/api/ventas/' + this.state._id, updateVenta);
         } else {
             const newVenta = {
                 fechaVenta:this.state.fechaVenta,
@@ -76,7 +76,7 @@ export default class CreateVenta extends Component {
                 documento:this.state.documento,
                 vendedor:this.state.vendedor
             };
-            axios.post('http://localhost:4000/api/ventas', newVenta);
+            axios.post('https://novaproject.herokuapp.com/api/ventas', newVenta);
         }
         window.location.href = '/seg_ventas';
 

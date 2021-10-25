@@ -15,14 +15,14 @@ export default class ventaList extends Component {
     }
 
     async getVenta() {
-        const res = await axios.get("http://localhost:4000/api/ventas")
+        const res = await axios.get("https://novaproject.herokuapp.com/api/ventas")
         this.setState({ ventas: res.data })
     }
 
     ventaDelete = async (ventaid) => {
 
         if (window.confirm("¿Esta seguro de eliminar el registro de la venta?")) {
-            await axios.delete("http://localhost:4000/api/ventas/" + ventaid);
+            await axios.delete("https://novaproject.herokuapp.com/api/ventas/" + ventaid);
             this.getVenta();
         }
         else { }

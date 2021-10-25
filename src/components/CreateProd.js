@@ -17,7 +17,7 @@ export default class CreateProd extends Component {
     async componentDidMount() {
 
         if (this.props.match.params.id) {
-            const res = await axios.get("http://localhost:4000/api/productos/" + this.props.match.params.id);
+            const res = await axios.get("https://novaproject.herokuapp.com/api/productos/" + this.props.match.params.id);
             this.setState(
                 {
                     Producto: res.data.Producto,
@@ -41,7 +41,7 @@ export default class CreateProd extends Component {
                 Precio: this.state.Precio,
                 Estado: this.state.Estado
             };
-            await axios.put("http://localhost:4000/api/productos/" + this.state._id, updateProd);
+            await axios.put("https://novaproject.herokuapp.com/api/productos/" + this.state._id, updateProd);
         }
         else {
             const newProd = {
@@ -50,7 +50,7 @@ export default class CreateProd extends Component {
                 Precio: this.state.Precio,
                 Estado: this.state.Estado
             };
-            await axios.post("http://localhost:4000/api/productos", newProd);
+            await axios.post("https://novaproject.herokuapp.com/api/productos", newProd);
         }
         window.location.href = '/productos';
 
